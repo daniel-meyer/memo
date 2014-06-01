@@ -1,0 +1,39 @@
+/* CSS Document */
+#tb_toolbox{
+	position:absolute;
+	left:0;
+	top:0 ;
+	background:#fff;
+	width:500px;
+	z-index:999;
+	}
+#tb_imageHolder{
+	position:absolute;
+	left:0;
+	top:0;
+	display: none;
+	z-index:997;
+	}
+#tb_rulerX, #tb_rulerY{
+	position:absolute;
+	background:#ccc;
+	z-index:998;
+	border:solid #666 1px;
+	cursor:move;
+	overflow:hidden;
+	}
+#tb_rulerX{
+	height:0px;
+	width:149%;
+	left:-50%;
+	top:10px;
+}
+#tb_rulerY{
+	height:149%;
+	width:0px;
+	top:-50%
+}	
+
+#tb_toolbox a{
+    color: blue;
+}
