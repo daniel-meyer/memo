@@ -1,7 +1,3 @@
-application/cache/cache_smarty/*
-application/cache/session/*
-application/cache/templates/*
-application/cache/zend_cache/*
 application/configs/application.ini
 .idea
 #################
