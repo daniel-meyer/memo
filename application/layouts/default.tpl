@@ -36,9 +36,12 @@ footer p {
           <a href="/" class="brand">{$settings->siteTitle}</a>
           <div class="nav-collapse collapse">
             <ul class="nav">
-              <li class="">
-                <a href="admin">Logowanie</a>
-              </li>
+                <li class="">
+                    <a href="admin">Logowanie</a>
+                </li>
+                <li class="">
+                    <a href="memo/last">Ostatnio dodane</a>
+                </li>
               <!-- <li class="active">
                 <a href="./getting-started.html">Get started</a>
               </li>
