@@ -10,6 +10,11 @@
 <a class="btn" href="{$lang}/admin">Powrót</a>
 <div>&nbsp;</div>
 
+<form class="well form-inline" method="get" action="">
+    <label>Fraza</label>
+    <input type="text" value="{$request->getParam('word')}" name="word">
+    <button class="btn" type="submit">Szukaj</button>
+</form>
 
 <table class="table table-striped">
 

@@ -36,8 +36,9 @@ class Admin_MemoController extends Etd_Controller_Action
         }
         
         // query builder
-        $select = Orm::factory('Memo')->select()->order($sort.' '.$by);
+        $select = Orm::factory('Memo')->select()->order($sort . ' ' . $by);
 
+        if ($word = $this->_getParam('word')) $select->where('question LIKE ? or answer LIKE ?', '%' . $word . '%');
         
         // paginacja        
         $paginator = Zend_Paginator::factory($select);
