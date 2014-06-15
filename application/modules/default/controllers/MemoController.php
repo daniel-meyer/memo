@@ -13,7 +13,7 @@ class MemoController extends Etd_Controller_Action {
     }
 	
     public function lastAction() {
-		$this->view->memos = Orm::factory('Memo')->fetchAll(null, 'submit_date DESC', 50);
+		$this->view->memos = Orm::factory('Memo')->fetchAll("answer!=''", 'submit_date DESC', 50);
 		$this->render('index');
     }
     public function sendAction() {
