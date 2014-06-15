@@ -238,7 +238,7 @@ END;
             $newWords = array_combine($newWords, $newWords);
             $words = array_merge($words, $newWords);
         }
-        return $words;
+        return array_values($words);
     }
     
     private function removeEmptyItems($array)

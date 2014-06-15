@@ -24,6 +24,7 @@
                     {foreach from=$words key=k item=item}
                     {if $item}
                         <tr>
+                           <td class="span1">{$k}</td>
                            <td class="span3">{$item}</td>
                            <td class="span3">
                                 <div class="btn-group" data-toggle="buttons-radio">
