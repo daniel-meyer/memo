@@ -31,6 +31,9 @@ body {
 .contact-form div {
     margin-bottom: 15px;
 }
+#formContainer {
+    width: auto;
+}
 #formContainer .contact-form label {
     width: 150px;
     display: block;
