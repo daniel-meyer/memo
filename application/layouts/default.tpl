@@ -42,10 +42,10 @@ footer p {
                 <li class="">
                     <a href="memo/last">Ostatnio dodane</a>
                 </li>
-              <!-- <li class="active">
-                <a href="./getting-started.html">Get started</a>
-              </li>
-               -->
+                <li class="active">
+                    <a href="memo">Get started</a>
+                </li>
+
             </ul>
           </div>
         </div>
