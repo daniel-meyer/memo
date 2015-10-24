@@ -9,7 +9,7 @@ class MemoController extends Etd_Controller_Action
 
     public function indexAction()
     {
-        $count = Orm::factory('Memo')->count(["answer!=?" => '']);
+        $count = Orm::factory('Memo')->count(array("answer!=?" => ''));
         $offset = rand(0, floor($count / 50)) * 50;
         $this->view->memos = Orm::factory('Memo')->fetchAll("answer!=''", 'submit_date DESC', 50, $offset);
     }
@@ -49,7 +49,7 @@ class MemoController extends Etd_Controller_Action
                 $mail->setSubject($this->view->title);
                 $mail->send();
                  */
-                $data = ['success' => true];
+                $data = array('success' => true);
             }
 
             $this->_helper->json($data);
@@ -58,7 +58,7 @@ class MemoController extends Etd_Controller_Action
 
     public function saveStatsAction()
     {
-        $data = ['success' => false];
+        $data = array('success' => false);
         $rq = $this->getRequest();
         if (is_array($rq->getPost('answers') )) {
             foreach ($rq->getPost('answers') as $memoId => $grade) {
@@ -67,7 +67,7 @@ class MemoController extends Etd_Controller_Action
                 $stat->setGrade($grade);
                 $stat->setUserId(1);
                 $stat->save();
-                $data = ['success' => true];
+                $data = array('success' => true);
             }
 
         }
@@ -80,10 +80,10 @@ class MemoController extends Etd_Controller_Action
 
         $translate = Zend_Registry::get('Zend_Translate');
 
-        $message = [
+        $message = array(
             'question' => $translate->_('Please enter the question'),
             'ajax' => $translate->_('This is not ajax request'),
-        ];
+        );
 
         $vNotEmpty = new Zend_Validate_NotEmpty();
         if ($vNotEmpty->isValid($rq->getPost('question'))) {
