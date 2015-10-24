@@ -19,6 +19,7 @@ body {
 
 #preloader{
     height:41px;
+    width: auto;
 }
 
 .contact-form {
