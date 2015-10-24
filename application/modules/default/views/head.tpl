@@ -10,7 +10,7 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap-theme.min.css" integrity="sha384-aUGj/X2zp5rLCbBxumKTCw2Z50WgIr1vs/PFN4praOTvYXWlVyh2UtNUU0KAUhAX" crossorigin="anonymous">
 
 
-    <link href="public/default/styles/style.css" rel="stylesheet" />
+    {*<link href="public/default/styles/style.css" rel="stylesheet" />*}
     <!--[if IE]>
         <link href="public/default/styles/ie.css" rel="stylesheet" />
     <![endif]-->
