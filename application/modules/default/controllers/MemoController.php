@@ -13,7 +13,7 @@ class MemoController extends Etd_Controller_Action
             ->select()
             ->from('memo')
             ->setIntegrityCheck(false)
-            ->joinLeft(array('s' => 'memo_stat'), 'memo.id=s.memo_id', null)
+            ->joinLeft(array('s' => 'memo_stat'), 'memo.id=s.memo_id', 'next_exam')
             ->where("answer != ''")
             ->where('s.id IS NULL OR ( s.next_exam < NOW() )')
             ->order('s.next_exam ASC, submit_date ASC')
