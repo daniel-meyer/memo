@@ -16,9 +16,19 @@ class MemoController extends Etd_Controller_Action
 
     public function lastAction()
     {
-        $this->view->memos = Orm::factory('Memo')->fetchAll("answer!=''", 'submit_date DESC', $this->_settings->memoLimit);
+        $select = Orm::factory('Memo')
+            ->select()
+            ->joinLeft(array('s' => Orm::factory('MemoStat')), 'memo.id=s.memo_id')
+            ->where("answer!=''")
+            ->where('s.id IS NULL')
+            ->order('submit_date DESC')
+            ->limit($this->_settings->memoLimit);
+
+        $this->view->memos = Orm::factory('Memo')->fetchAll($select);
         $this->render('index');
     }
+
+
 
     public function sendAction()
     {
