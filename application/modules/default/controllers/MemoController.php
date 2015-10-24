@@ -81,9 +81,9 @@ class MemoController extends Etd_Controller_Action
         $rq = $this->getRequest();
         if (is_array($rq->getPost('answers') )) {
             foreach ($rq->getPost('answers') as $memoId => $grade) {
-                $stat = Orm::factory('MemoStat')->findOneBy(array('memoId' => $memoId, 'userId' => $userId));
+                $stat = Orm::factory('MemoStat')->findOneBy(array('memo_id' => $memoId, 'user_id' => $userId));
                 if (!$stat) {
-                    $stat = Orm::factory('MemoStat')->create(array('memoId' => $memoId, 'userId' => $userId, 'grades' => $grade));
+                    $stat = Orm::factory('MemoStat')->create(array('memo_id' => $memoId, 'user_id' => $userId, 'grades' => $grade));
                 } else {
                     $stat->setGrades($stat->getGrades() . ',' . $grade);
                 }
