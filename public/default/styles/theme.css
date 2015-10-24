@@ -23,14 +23,13 @@ body {
 }
 
 #formContainer .formRow label {
-    margin-left: -105px;
+    margin-left: -110px;
 }
 
 .contact-form {
     position: relative;
     top: 36px;
     left: 0;
-    width: 810px;
     height: 556px;
 }
 .contact-form div {
