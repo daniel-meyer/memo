@@ -24,8 +24,6 @@ body {
 
 .contact-form {
     position: relative;
-    top: 36px;
-    left: 0;
     height: 556px;
 }
 .contact-form div {
@@ -62,9 +60,7 @@ body {
     border: 1px solid #575756;
 }
 .buttons {
-    text-align: center;
-    width: 300px;
-    margin-left: 165px;
+    text-align: right;
 }
 .form-btn {
     border: none !important;
