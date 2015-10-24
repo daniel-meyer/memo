@@ -11,12 +11,12 @@ class MemoController extends Etd_Controller_Action
     {
         $count = Orm::factory('Memo')->count(array("answer!=?" => ''));
         $offset = rand(0, floor($count / 50)) * 50;
-        $this->view->memos = Orm::factory('Memo')->fetchAll("answer!=''", 'submit_date DESC', $this->_session->memoLimit, $offset);
+        $this->view->memos = Orm::factory('Memo')->fetchAll("answer!=''", 'submit_date DESC', $this->_settings->memoLimit, $offset);
     }
 
     public function lastAction()
     {
-        $this->view->memos = Orm::factory('Memo')->fetchAll("answer!=''", 'submit_date DESC', $this->_session->memoLimit);
+        $this->view->memos = Orm::factory('Memo')->fetchAll("answer!=''", 'submit_date DESC', $this->_settings->memoLimit);
         $this->render('index');
     }
 
@@ -43,8 +43,8 @@ class MemoController extends Etd_Controller_Action
                 $this->view->title = 'Formularz kontaktowy';
                 $this->view->content = $this->getRequest()->getControllerName() . '/@send.tpl';
                 $mail->setBodyHtml($this->view->render('../../default/views/@mail.tpl'));
-                $mail->setFrom($settings->siteEmail, $settings->siteTitle);
-                $mail->addTo($this->_session->siteEmail);
+                $mail->setFrom($this->_settings->siteEmail, $this->_settings->siteTitle);
+                $mail->addTo($this->_settings->siteEmail);
                 $mail->setSubject($this->view->title);
                 $mail->send();
                  */
