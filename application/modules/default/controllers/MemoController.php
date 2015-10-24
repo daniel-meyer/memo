@@ -18,8 +18,9 @@ class MemoController extends Etd_Controller_Action
     {
         $select = Orm::factory('Memo')
             ->select()
+            ->from('memo')
             ->setIntegrityCheck(false)
-            ->joinLeft(array('s' => 'memo_stat'), 'memo.id=s.memo_id')
+            ->joinLeft(array('s' => 'memo_stat'), 'memo.id=s.memo_id', null)
             ->where("answer!=''")
             ->where('s.id IS NULL')
             ->order('submit_date DESC')
