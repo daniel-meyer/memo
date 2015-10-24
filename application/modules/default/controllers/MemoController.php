@@ -11,12 +11,12 @@ class MemoController extends Etd_Controller_Action
     {
         $count = Orm::factory('Memo')->count(array("answer!=?" => ''));
         $offset = rand(0, floor($count / 50)) * 50;
-        $this->view->memos = Orm::factory('Memo')->fetchAll("answer!=''", 'submit_date DESC', 50, $offset);
+        $this->view->memos = Orm::factory('Memo')->fetchAll("answer!=''", 'submit_date DESC', $this->_session->memoLimit, $offset);
     }
 
     public function lastAction()
     {
-        $this->view->memos = Orm::factory('Memo')->fetchAll("answer!=''", 'submit_date DESC', 50);
+        $this->view->memos = Orm::factory('Memo')->fetchAll("answer!=''", 'submit_date DESC', $this->_session->memoLimit);
         $this->render('index');
     }
 
@@ -37,7 +37,6 @@ class MemoController extends Etd_Controller_Action
 
                 $form->save();
                 /*
-                $settings = Zend_Registry::get('settings');
                 // generowanie maila
                 $mail = new Etd_Mail('utf-8');
                 $this->view->form = $form;
@@ -45,7 +44,7 @@ class MemoController extends Etd_Controller_Action
                 $this->view->content = $this->getRequest()->getControllerName() . '/@send.tpl';
                 $mail->setBodyHtml($this->view->render('../../default/views/@mail.tpl'));
                 $mail->setFrom($settings->siteEmail, $settings->siteTitle);
-                $mail->addTo($settings->siteEmail);
+                $mail->addTo($this->_session->siteEmail);
                 $mail->setSubject($this->view->title);
                 $mail->send();
                  */
@@ -62,7 +61,7 @@ class MemoController extends Etd_Controller_Action
         $rq = $this->getRequest();
         if (is_array($rq->getPost('answers') )) {
             foreach ($rq->getPost('answers') as $memoId => $grade) {
-                $stat = Orm::factory('MemoStat');
+                $stat = Orm::factory('MemoStat')->create();
                 $stat->setMemoId($memoId);
                 $stat->setGrade($grade);
                 $stat->setUserId(1);

@@ -1,7 +1,7 @@
 {literal}
     <script type="text/javascript">
+        var answers = {};
         $( document ).ready( function () {
-            var answers = {};
             $( '#memo-next' ).click( function () {
                 $( '.memo-item.show .answer' ).addClass( 'show' );
                 $( this ).hide();
@@ -25,7 +25,7 @@
             } );
 
             $( '#memo-save' ).click( function () {
-                var $this = this;
+                var $this = $(this);
                 if (Object.keys(answers).length == 0) {
                     alert('There is no data to save');
                 } else {
@@ -73,8 +73,8 @@
             <hr/>
             <div class="answer">
                 <p>{$item->getAnswer()}</p>
-                <button class="btn btn-large memo-answer memo-ok">OK</button>
-                <button class="btn btn-large memo-answer memo-wrong">WRONG</button>
+                <button class="btn btn-large btn-success memo-answer memo-ok">OK</button>
+                <button class="btn btn-large btn-danger memo-answer memo-wrong">WRONG</button>
             </div>
 
         </div>
