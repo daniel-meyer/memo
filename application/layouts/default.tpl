@@ -37,10 +37,10 @@ footer p {
           <div class="nav-collapse collapse">
             <ul class="nav">
                 <li class="">
-                    <a href="admin">Logowanie</a>
+                    <a href="admin">Login</a>
                 </li>
                 <li class="">
-                    <a href="memo/last">Ostatnio dodane</a>
+                    <a href="memo/last">Last added</a>
                 </li>
                 <li class="active">
                     <a href="memo">Get started</a>
