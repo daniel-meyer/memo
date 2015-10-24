@@ -1,28 +1,32 @@
 <?php
 
-class MemoController extends Etd_Controller_Action {
-
-    function init() {
+class MemoController extends Etd_Controller_Action
+{
+    function init()
+    {
         parent::init();
     }
 
-    public function indexAction() {
-		$count = Orm::factory('Memo')->count(array("answer!=?" => ''));
-		$offset = rand(0, floor($count/50)) * 50; 
-		$this->view->memos = Orm::factory('Memo')->fetchAll("answer!=''", 'submit_date DESC', 50, $offset);
+    public function indexAction()
+    {
+        $count = Orm::factory('Memo')->count(["answer!=?" => '']);
+        $offset = rand(0, floor($count / 50)) * 50;
+        $this->view->memos = Orm::factory('Memo')->fetchAll("answer!=''", 'submit_date DESC', 50, $offset);
     }
-	
-    public function lastAction() {
-		$this->view->memos = Orm::factory('Memo')->fetchAll("answer!=''", 'submit_date DESC', 50);
-		$this->render('index');
+
+    public function lastAction()
+    {
+        $this->view->memos = Orm::factory('Memo')->fetchAll("answer!=''", 'submit_date DESC', 50);
+        $this->render('index');
     }
-    public function sendAction() {
+
+    public function sendAction()
+    {
         /**
          * Wyslij odpowiedz json
          */
         $rq = $this->getRequest();
         if ($rq->isPost()) {
-
 
             if ($errors = $this->validForm()) {
                 $data = $errors;
@@ -45,34 +49,50 @@ class MemoController extends Etd_Controller_Action {
                 $mail->setSubject($this->view->title);
                 $mail->send();
                  */
-                $data = array('success' => true);
+                $data = ['success' => true];
             }
 
             $this->_helper->json($data);
         }
     }
 
-    private function validForm() {
+    public function saveStatsAction()
+    {
+        $data = ['success' => false];
         $rq = $this->getRequest();
-        
+        if (is_array($rq->getPost('answers') )) {
+            foreach ($rq->getPost('answers') as $memoId => $grade) {
+                $stat = Orm::factory('MemoStat');
+                $stat->setMemoId($memoId);
+                $stat->setGrade($grade);
+                $stat->save();
+                $data = ['success' => true];
+            }
+
+        }
+        $this->_helper->json($data);
+    }
+
+    private function validForm()
+    {
+        $rq = $this->getRequest();
+
         $translate = Zend_Registry::get('Zend_Translate');
 
-        $message = array(
+        $message = [
             'question' => $translate->_('Please enter the question'),
             'ajax' => $translate->_('This is not ajax request'),
-        );
+        ];
 
         $vNotEmpty = new Zend_Validate_NotEmpty();
         if ($vNotEmpty->isValid($rq->getPost('question'))) {
             unset($message['question']);
         }
-        
-        if($rq->isXmlHttpRequest()){
+
+        if ($rq->isXmlHttpRequest()) {
             unset($message['ajax']);
         }
-        
 
         return $message;
     }
-
 }
