@@ -65,6 +65,7 @@ class MemoController extends Etd_Controller_Action
                 $stat = Orm::factory('MemoStat');
                 $stat->setMemoId($memoId);
                 $stat->setGrade($grade);
+                $stat->setUserId(1);
                 $stat->save();
                 $data = ['success' => true];
             }
