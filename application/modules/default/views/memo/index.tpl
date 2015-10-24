@@ -80,5 +80,5 @@
         </div>
     {/foreach}
     <button id="memo-next" class="btn btn-large">NEXT</button>
-    <button id="memo-save" class="btn btn-large hidden" data-url="memo/save-stats">SAVE</button>
+    <button id="memo-save" class="btn btn-large hide" data-url="memo/save-stats">SAVE</button>
 </div>
