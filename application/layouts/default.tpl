@@ -32,9 +32,7 @@
         {layout attrib="content"} {* włączane podstrony *}
 
 
-        <footer>
-            <p>&copy; 2013 Memo</p>
-        </footer>
+        <footer>&copy; 2013 Memo</footer>
     </div>
 </body>
 </html>

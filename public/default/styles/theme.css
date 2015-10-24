@@ -38,6 +38,7 @@ body {
     vertical-align: top;
     margin-right: 15px;
     padding-top: 3px;
+    margin-left: 0;
 }
 .contact-form input {
     width: 280px;
