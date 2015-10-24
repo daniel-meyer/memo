@@ -31,7 +31,7 @@ body {
 .contact-form div {
     margin-bottom: 15px;
 }
-.contact-form label {
+#formContainer .contact-form label {
     width: 150px;
     display: block;
     text-align: left;
