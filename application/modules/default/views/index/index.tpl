@@ -5,7 +5,7 @@ $(document).ready(function() {
 });
 </script>
 {/literal}
-<div id="formContainer"  style="position: relative; height: 580px; ">
+<div id="formContainer">
    
     <form class="contact-form" id="contact-form" action="memo/send" >
         <input type="hidden" name="lang" value="{$lang}" />
