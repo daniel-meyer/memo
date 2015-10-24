@@ -30,11 +30,11 @@
     <div class="container theme-showcase" role="main">
         {include file="flash-message.tpl"}
         {layout attrib="content"} {* włączane podstrony *}
+
+
+        <footer>
+            <p>&copy; 2013 Memo</p>
+        </footer>
     </div>
-
-    <footer>
-        <p>&copy; 2013 Memo</p>
-    </footer>
-
 </body>
 </html>
