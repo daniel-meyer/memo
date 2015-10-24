@@ -16,7 +16,7 @@ class MemoController extends Etd_Controller_Action
             ->joinLeft(array('s' => 'memo_stat'), 'memo.id=s.memo_id', null)
             ->where("answer != ''")
             ->where('s.id IS NULL OR ( s.next_exam < NOW() )')
-            ->order('submit_date DESC')
+            ->order('s.next_exam ASC, submit_date ASC')
             ->limit($this->_settings->memoLimit);
 
         $this->view->memos = Orm::factory('Memo')->fetchAll($select);    }
