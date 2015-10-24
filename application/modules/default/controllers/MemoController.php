@@ -9,10 +9,17 @@ class MemoController extends Etd_Controller_Action
 
     public function indexAction()
     {
-        $count = Orm::factory('Memo')->count(array("answer!=?" => ''));
-        $offset = rand(0, floor($count / 50)) * 50;
-        $this->view->memos = Orm::factory('Memo')->fetchAll("answer!=''", 'submit_date DESC', $this->_settings->memoLimit, $offset);
-    }
+        $select = Orm::factory('Memo')
+            ->select()
+            ->from('memo')
+            ->setIntegrityCheck(false)
+            ->joinLeft(array('s' => 'memo_stat'), 'memo.id=s.memo_id', null)
+            ->where("answer != ''")
+            ->where('s.id IS NULL OR ( s.next_exam < NOW() )')
+            ->order('submit_date DESC')
+            ->limit($this->_settings->memoLimit);
+
+        $this->view->memos = Orm::factory('Memo')->fetchAll($select);    }
 
     public function lastAction()
     {
@@ -21,7 +28,7 @@ class MemoController extends Etd_Controller_Action
             ->from('memo')
             ->setIntegrityCheck(false)
             ->joinLeft(array('s' => 'memo_stat'), 'memo.id=s.memo_id', null)
-            ->where("answer!=''")
+            ->where("answer != ''")
             ->where('s.id IS NULL')
             ->order('submit_date DESC')
             ->limit($this->_settings->memoLimit);
@@ -70,13 +77,22 @@ class MemoController extends Etd_Controller_Action
     public function saveStatsAction()
     {
         $data = array('success' => false);
+        $userId = 1;
         $rq = $this->getRequest();
         if (is_array($rq->getPost('answers') )) {
             foreach ($rq->getPost('answers') as $memoId => $grade) {
-                $stat = Orm::factory('MemoStat')->create();
-                $stat->setMemoId($memoId);
+                $stat = Orm::factory('MemoStat')->findOneBy(array('memoId' => $memoId, 'userId' => $userId));
+                if (!$stat) {
+                    $stat = Orm::factory('MemoStat')->create(array('memoId' => $memoId, 'userId' => $userId, 'grades' => $grade));
+                } else {
+                    $stat->setGrades($stat->getGrades() . ',' . $grade);
+                }
+
                 $stat->setGrade($grade);
-                $stat->setUserId(1);
+
+                $examDate = new DateTime;
+                $examDate->modify($grade ? '+1 month' : '+1 day');
+                $stat->setNextExam($examDate);
                 $stat->save();
                 $data = array('success' => true);
             }
