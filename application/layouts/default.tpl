@@ -85,11 +85,5 @@
      </p>
  </div>
 
-
-    <footer>
-        <p>&copy; 2013 Memo</p>
-    </footer>    
-    
-   
 </body>
 </html>
