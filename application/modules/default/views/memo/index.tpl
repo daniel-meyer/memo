@@ -41,17 +41,18 @@
         } );
     </script>
 {/literal}
-<div class="memos-items jumbotron">
+<div class="memos-items">
     {foreach from=$memos item=item name=memos}
         <div class="memo-item {if $smarty.foreach.memos.first}show{/if}" id="memo-item-{$smarty.foreach.memos.iteration}" data-id="{$item->getId()}">
 
             <div class="progress">
                 <div style="width: {$smarty.foreach.memos.iteration/$smarty.foreach.memos.total*100}%" aria-valuemax="100" aria-valuemin="0" aria-valuenow="40" role="progressbar" class="progress-bar progress-bar-success"><span class="sr-only">{$smarty.foreach.memos.iteration} from {$smarty.foreach.memos.total}</span></div>
             </div>
-            <p class="question">{$item->getQuestion()}</p>
+
+            <p class="question jumbotron">{$item->getQuestion()}</p>
             <hr/>
             <div class="answer">
-                <p>{$item->getAnswer()}</p>
+                <p class="jumbotron">{$item->getAnswer()}</p>
                 <button class="btn btn-lg btn-success memo-answer memo-ok">OK</button>
                 <button class="btn btn-lg btn-danger memo-answer memo-wrong">WRONG</button>
             </div>
