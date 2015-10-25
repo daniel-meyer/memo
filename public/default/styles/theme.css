@@ -40,6 +40,7 @@ body {
     margin-right: 15px;
     padding-top: 3px;
     margin-left: 0;
+    font-size: 18px;
 }
 .contact-form input {
     width: 280px;
@@ -48,14 +49,14 @@ body {
 .contact-form textarea {
     width: 280px;
     padding: 10px;
-    height: 200px;
+    height: 100px;
     overflow: auto;
     resize:none;
 }
 .contact-form input, .contact-form textarea{
     color: #575756;
     font-weight: 400;
-    font-size: 14px;
+    font-size: 18px;
     font-family: 'Play', sans-serif;
     border: 1px solid #575756;
 }
@@ -68,7 +69,7 @@ body {
     font-weight: 700 !important;
     width: auto !important;
     display: inline-block;
-    font-size: 13px !important;
+    font-size: 18px !important;
     cursor: pointer;
 }
 .form-btn:hover {
@@ -101,3 +102,28 @@ footer {
 .tipsy-se .tipsy-arrow { bottom: 0; right: 10px; background-position: bottom left; }
 .tipsy-e .tipsy-arrow { top: 50%; margin-top: -4px; right: 0; width: 5px; height: 9px; background-position: top right; }
 .tipsy-w .tipsy-arrow { top: 50%; margin-top: -4px; left: 0; width: 5px; height: 9px; }
+
+.memos-items {
+    padding: 15px 22px 12px;
+}
+
+.memo-item {
+    display: none;
+}
+
+.memo-item.show {
+    display: block;
+}
+
+.memo-item .question {
+    font-weight: bold;
+}
+
+.memo-item .answer {
+    display: none;
+    padding-bottom: 15px
+}
+
+.memo-item .answer.show {
+    display: block;
+}

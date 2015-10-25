@@ -26,7 +26,7 @@
 
             $( '#memo-save' ).click( function () {
                 var $this = $(this);
-                if (Object.keys(answers).length == 0) {
+                if ($.isEmpty(answers)) {
                     alert('There is no data to save');
                 } else {
                     $.post($(this ).data('url'), {answers: answers}, function() {
@@ -39,46 +39,20 @@
 
         } );
     </script>
-    <style>
-        .memos-items {
-            padding: 15px 22px 12px;
-        }
-
-        .memo-item {
-            display: none;
-        }
-
-        .memo-item.show {
-            display: block;
-        }
-
-        .memo-item .question {
-            font-weight: bold;
-        }
-
-        .memo-item .answer {
-            display: none;
-            padding-bottom: 15px
-        }
-
-        .memo-item .answer.show {
-            display: block;
-        }
-    </style>
 {/literal}
-<div class="memos-items">
+<div class="memos-items jumbotron">
     {foreach from=$memos item=item name=memos}
         <div class="memo-item {if $smarty.foreach.memos.first}show{/if}" id="memo-item-{$smarty.foreach.memos.iteration}" data-id="{$item->getId()}">
             <p class="question">{$item->getQuestion()}</p>
             <hr/>
             <div class="answer">
                 <p>{$item->getAnswer()}</p>
-                <button class="btn btn-large btn-success memo-answer memo-ok">OK</button>
-                <button class="btn btn-large btn-danger memo-answer memo-wrong">WRONG</button>
+                <button class="btn btn-lg btn-success memo-answer memo-ok">OK</button>
+                <button class="btn btn-lg btn-danger memo-answer memo-wrong">WRONG</button>
             </div>
 
         </div>
     {/foreach}
-    <button id="memo-next" class="btn btn-large">NEXT</button>
-    <button id="memo-save" class="btn btn-large hide" data-url="memo/save-stats">SAVE</button>
+    <button id="memo-next" class="btn btn-lg">NEXT</button>
+    <button id="memo-save" class="btn btn-lg hide" data-url="memo/save-stats">SAVE</button>
 </div>
