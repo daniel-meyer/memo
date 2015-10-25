@@ -48,11 +48,12 @@
             <div class="progress">
                 <div style="width: {$smarty.foreach.memos.iteration/$smarty.foreach.memos.total*100}%" aria-valuemax="100" aria-valuemin="0" aria-valuenow="40" role="progressbar" class="progress-bar progress-bar-success"><span class="sr-only">{$smarty.foreach.memos.iteration} from {$smarty.foreach.memos.total}</span></div>
             </div>
-
-            <p class="question jumbotron">{$item->getQuestion()}</p>
-            <hr/>
+            <div class="jumbotron">
+                <p class="question">{$item->getQuestion()}</p>
+                <hr/>
+                <p class="answer">{$item->getAnswer()}</p>
+            </div>
             <div class="answer">
-                <p class="jumbotron">{$item->getAnswer()}</p>
                 <button class="btn btn-lg btn-success memo-answer memo-ok">OK</button>
                 <button class="btn btn-lg btn-danger memo-answer memo-wrong">WRONG</button>
             </div>

@@ -121,7 +121,6 @@ footer {
 
 .memo-item .answer {
     display: none;
-    padding-bottom: 15px
 }
 
 .memo-item .answer.show {
