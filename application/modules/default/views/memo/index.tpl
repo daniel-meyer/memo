@@ -26,7 +26,7 @@
 
             $( '#memo-save' ).click( function () {
                 var $this = $(this);
-                if ($.isEmpty(answers)) {
+                if ($.isEmptyObject(answers)) {
                     alert('There is no data to save');
                 } else {
                     $.post($(this ).data('url'), {answers: answers}, function() {
