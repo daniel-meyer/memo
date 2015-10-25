@@ -18,7 +18,7 @@
                     next.addClass( 'show' );
                     $( '#memo-next' ).show();
                 } else {
-                    $( '#memo-save' ).show();
+                    $( '#memo-save' ).removeClass('hide');
                 }
 
                 return false;
