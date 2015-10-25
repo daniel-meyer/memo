@@ -87,18 +87,35 @@ class MemoController extends Etd_Controller_Action
                 } else {
                     $stat->setGrades($stat->getGrades() . ',' . $grade);
                 }
-
                 $stat->setGrade($grade);
-
-                $examDate = new DateTime;
-                $examDate->modify($grade ? '+1 month' : '+1 day');
-                $stat->setNextExam($examDate);
+                $stat->setNextExam($this->getNextExamDate($stat->getGrades()));
                 $stat->save();
                 $data = array('success' => true);
             }
 
         }
         $this->_helper->json($data);
+    }
+
+    private function getNextExamDate($grades)
+    {
+        $date = new DateTime;
+        if (substr($grades, -7) == '0,1,1,1') {
+            $date->modify('+1 month');
+        } elseif (substr($grades, -5) == '1,1,1') {
+            $date->modify('+3 months');
+        } elseif (substr($grades, -5) == '0,1,1') {
+            $date->modify('+1 month');
+        } elseif (substr($grades, -3) == '1,1') {
+            $date->modify('+2 months');
+        } elseif (substr($grades, -3) == '0,1') {
+            $date->modify('+1 week');
+        } elseif (substr($grades, -1) == '1') {
+            $date->modify('+1 month');
+        } else {
+            $date->modify('+1 day');
+        }
+        return $date;
     }
 
     private function validForm()
