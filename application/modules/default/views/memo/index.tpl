@@ -44,6 +44,10 @@
 <div class="memos-items jumbotron">
     {foreach from=$memos item=item name=memos}
         <div class="memo-item {if $smarty.foreach.memos.first}show{/if}" id="memo-item-{$smarty.foreach.memos.iteration}" data-id="{$item->getId()}">
+
+            <div class="progress">
+                <div style="width: {$smarty.foreach.memos.iteration/$smarty.foreach.memos.total*100}%" aria-valuemax="100" aria-valuemin="0" aria-valuenow="40" role="progressbar" class="progress-bar progress-bar-success"><span class="sr-only">40% Complete (success)</span></div>
+            </div>
             <p class="question">{$item->getQuestion()}</p>
             <hr/>
             <div class="answer">
