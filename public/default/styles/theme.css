@@ -127,3 +127,6 @@ footer {
 .memo-item .answer.show {
     display: block;
 }
+.jumbotron hr {
+    border-color: #CCCCCC;
+}
