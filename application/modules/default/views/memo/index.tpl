@@ -53,6 +53,6 @@
 
         </div>
     {/foreach}
-    <button id="memo-next" class="btn btn-lg">NEXT</button>
-    <button id="memo-save" class="btn btn-lg hide" data-url="memo/save-stats">SAVE</button>
+    <button id="memo-next" class="btn btn-lg btn-primary">NEXT</button>
+    <button id="memo-save" class="btn btn-lg btn-primary hide" data-url="memo/save-stats">SAVE</button>
 </div>
