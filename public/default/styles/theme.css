@@ -127,6 +127,10 @@ footer {
     display: none;
 }
 
+.memo-item .answer p {
+    margin-bottom: 40px;
+}
+
 .memo-item .answer.show {
     display: block;
 }
