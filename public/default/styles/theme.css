@@ -61,7 +61,7 @@ body {
     border: 1px solid #575756;
 }
 .buttons {
-    text-align: right;
+    margin-left: 190px;
 }
 .form-btn {
     border: none !important;
