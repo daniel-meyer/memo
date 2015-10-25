@@ -24,7 +24,7 @@
                 return false;
             } );
 
-            $( '#memo-save' ).click( function () {
+            $( '#memo-save .btn' ).click( function () {
                 var $this = $(this);
                 if ($.isEmptyObject(answers)) {
                     $('#memo-alert').removeClass('hide');
@@ -69,7 +69,7 @@
     </div>
 
     <div id="memo-next-lesson" class="hide">
-        <div class="alert alert-success" role="alert"><strong>Saved!</strong> You successfully end this lesson.</div>
+        <div class="alert alert-success" role="alert"><strong>Saved!</strong> You successfully save this lesson results.</div>
         <a href="{url}" class="btn btn-lg btn-primary">Next Lesson</a>
     </div>
 </div>
