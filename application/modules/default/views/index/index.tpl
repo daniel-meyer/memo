@@ -13,7 +13,7 @@ $(document).ready(function() {
             <div class="formRow"><label for="question">Question:</label><textarea id="question"  name="question" ></textarea></div>
             <div class="formRow"><label for="answer">Answer:</label><textarea id="answer"  name="answer" ></textarea></div>
             <div class="buttons">
-                <button class="btn btn-primary" type="submit" >Send</button>
+                <button class="btn btn-primary btn-lg" type="submit" >Send</button>
             </div>
         </fieldset>
         <div class="thank-you">
