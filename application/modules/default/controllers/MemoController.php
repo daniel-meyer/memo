@@ -113,7 +113,7 @@ class MemoController extends Etd_Controller_Action
         } elseif (substr($grades, -1) == '1') {
             $date->modify('+1 month');
         } else {
-            $date->modify('+1 day');
+            $date->modify('+12 hours');
         }
         return $date;
     }
