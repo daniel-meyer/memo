@@ -238,6 +238,7 @@ END;
             $newWords = array_combine($newWords, $newWords);
             $words = array_merge($words, $newWords);
         }
+        asort($words);
         return array_values($words);
     }
     
