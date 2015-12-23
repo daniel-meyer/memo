@@ -13,13 +13,19 @@ class MemoController extends Etd_Controller_Action
             ->select()
             ->from('memo')
             ->setIntegrityCheck(false)
-            ->joinLeft(array('s' => 'memo_stat'), 'memo.id=s.memo_id', null)
+            ->joinLeft(array('s' => 'memo_stat'), 'memo.id=s.memo_id', array('next_exam'))
             ->where("answer != ''")
-            ->where('s.id IS NULL OR ( s.next_exam < NOW() )')
             ->order(array('s.next_exam ASC', 'submit_date ASC'))
             ->limit($this->_settings->memoLimit);
 
-        $this->view->memos = Orm::factory('Memo')->fetchAll($select);
+        $listSelect = clone $select;
+        $listSelect->where('s.id IS NULL OR ( s.next_exam < NOW() )');
+
+        $this->view->memos = Orm::factory('Memo')->fetchAll($listSelect);
+        if (!$this->view->memos) {
+            $this->view->nextMemo = Orm::factory('Memo')->fetchOne($select->limit(1));
+            $this->render('next');
+        }
     }
 
     public function lastAction()
