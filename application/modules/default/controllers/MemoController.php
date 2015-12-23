@@ -22,7 +22,7 @@ class MemoController extends Etd_Controller_Action
         $listSelect->where('s.id IS NULL OR ( s.next_exam < NOW() )');
 
         $this->view->memos = Orm::factory('Memo')->fetchAll($listSelect);
-        if (!$this->view->memos) {
+        if (count($this->view->memos) == 0) {
             $this->view->nextMemo = Orm::factory('Memo')->fetchOne($select->limit(1));
             $this->render('next');
         }
