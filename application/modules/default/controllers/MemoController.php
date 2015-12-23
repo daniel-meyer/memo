@@ -9,6 +9,8 @@ class MemoController extends Etd_Controller_Action
 
     public function indexAction()
     {
+
+        error_reporting(E_ALL);
         $select = Orm::factory('Memo')
             ->select()
             ->from('memo')
