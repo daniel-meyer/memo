@@ -9,8 +9,6 @@ class MemoController extends Etd_Controller_Action
 
     public function indexAction()
     {
-
-        error_reporting(E_ALL);
         $select = Orm::factory('Memo')
             ->select()
             ->from('memo')
@@ -25,7 +23,7 @@ class MemoController extends Etd_Controller_Action
 
         $this->view->memos = Orm::factory('Memo')->fetchAll($listSelect);
         if (count($this->view->memos) == 0) {
-            $this->view->nextMemo = Orm::factory('Memo')->fetchOne($select->limit(1));
+            $this->view->nextMemo = Orm::factory('Memo')->fetchRow($select->limit(1));
             $this->render('next');
         }
     }
