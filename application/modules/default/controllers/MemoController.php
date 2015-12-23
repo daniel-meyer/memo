@@ -30,9 +30,12 @@ class MemoController extends Etd_Controller_Action
             ->setIntegrityCheck(false)
             ->joinLeft(array('s' => 'memo_stat'), 'memo.id=s.memo_id', null)
             ->where("answer != ''")
-            ->where('s.id IS NULL')
             ->order('submit_date DESC')
             ->limit($this->_settings->memoLimit);
+
+        if (!$this->_getParam('all')) {
+            $select->where('s.id IS NULL');
+        }
 
         $this->view->memos = Orm::factory('Memo')->fetchAll($select);
         $this->render('index');
