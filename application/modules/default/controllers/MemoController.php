@@ -19,7 +19,8 @@ class MemoController extends Etd_Controller_Action
             ->order(array('s.next_exam ASC', 'submit_date ASC'))
             ->limit($this->_settings->memoLimit);
 
-        $this->view->memos = Orm::factory('Memo')->fetchAll($select);    }
+        $this->view->memos = Orm::factory('Memo')->fetchAll($select);
+    }
 
     public function lastAction()
     {
@@ -37,8 +38,6 @@ class MemoController extends Etd_Controller_Action
         $this->render('index');
     }
 
-
-
     public function sendAction()
     {
         /**
@@ -53,20 +52,8 @@ class MemoController extends Etd_Controller_Action
                 $form = Orm::factory('Memo')->create(array_map('strip_tags', $rq->getPost()));
                 $form->setSubmitDate(new DateTime);
                 $form->setActive(1);
-
                 $form->save();
-                /*
-                // generowanie maila
-                $mail = new Etd_Mail('utf-8');
-                $this->view->form = $form;
-                $this->view->title = 'Formularz kontaktowy';
-                $this->view->content = $this->getRequest()->getControllerName() . '/@send.tpl';
-                $mail->setBodyHtml($this->view->render('../../default/views/@mail.tpl'));
-                $mail->setFrom($this->_settings->siteEmail, $this->_settings->siteTitle);
-                $mail->addTo($this->_settings->siteEmail);
-                $mail->setSubject($this->view->title);
-                $mail->send();
-                 */
+
                 $data = array('success' => true);
             }
 
@@ -79,7 +66,7 @@ class MemoController extends Etd_Controller_Action
         $data = array('success' => false);
         $userId = 1;
         $rq = $this->getRequest();
-        if (is_array($rq->getPost('answers') )) {
+        if (is_array($rq->getPost('answers'))) {
             foreach ($rq->getPost('answers') as $memoId => $grade) {
                 $stat = Orm::factory('MemoStat')->findOneBy(array('memo_id' => $memoId, 'user_id' => $userId));
                 if (!$stat) {
@@ -92,7 +79,6 @@ class MemoController extends Etd_Controller_Action
                 $stat->save();
                 $data = array('success' => true);
             }
-
         }
         $this->_helper->json($data);
     }
@@ -101,19 +87,21 @@ class MemoController extends Etd_Controller_Action
     {
         $date = new DateTime;
         if (substr($grades, -7) == '0,1,1,1') {
-            $date->modify('+1 month');
-        } elseif (substr($grades, -5) == '1,1,1') {
-            $date->modify('+3 months');
-        } elseif (substr($grades, -5) == '0,1,1') {
-            $date->modify('+1 month');
-        } elseif (substr($grades, -3) == '1,1') {
-            $date->modify('+2 months');
-        } elseif (substr($grades, -3) == '0,1') {
             $date->modify('+1 week');
-        } elseif (substr($grades, -1) == '1') {
+        } elseif (substr($grades, -5) == '1,1,1') {
             $date->modify('+1 month');
+        } elseif (substr($grades, -5) == '0,1,1') {
+            $date->modify('+3 days');
+        } elseif (substr($grades, -5) == '0,0,1') {
+            $date->modify('+1 day');
+        } elseif (substr($grades, -3) == '1,1') {
+            $date->modify('+1 week');
+        } elseif (substr($grades, -3) == '0,1') {
+            $date->modify('+1 day');
+        } elseif (substr($grades, -1) == '1') {
+            $date->modify('+3 days');
         } else {
-            $date->modify('+8 hours');
+            $date->modify('+2 hours');
         }
         return $date;
     }
