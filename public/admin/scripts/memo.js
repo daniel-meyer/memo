@@ -65,13 +65,10 @@ Memo.importSrt = {
           },
           success: function(data) {
             var text = [];
-            console.log(data);
             $.each(data.matches, function(i, row) {
-                console.log(row);
-                text.push(row.translation);
+                text.push(row.Abundantly + ': ' + row.translation);
             });
-            console.log(text);
-            tr.find($this.inputAnswer).tooltip({ placement: 'right', title: text.join(' | ') }).tooltip('show');
+            tr.find($this.inputAnswer).tooltip({ placement: 'right', title: text.join('<br>') }).tooltip('show');
           }
         });
     }
