@@ -75,7 +75,9 @@ class MemoController extends Etd_Controller_Action
             if ($errors = $this->validForm()) {
                 $data = $errors;
             } else {
-                $form = Orm::factory('Memo')->create(array_map('strip_tags', $rq->getPost()));
+                $form = Orm::factory('Memo')->create();
+                $form->setQuestion($rq->getPost('question'));
+                $form->setAnswer($rq->getPost('answer'));
                 $form->setSubmitDate(new DateTime);
                 $form->setActive(1);
                 $form->save();
