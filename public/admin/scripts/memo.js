@@ -65,9 +65,12 @@ Memo.importSrt = {
           },
           success: function(data) {
             var text = [];
+            console.log(data);
             $.each(data.matches, function(row) {
+                console.log(row);
                 text.push(row.translation);
             });
+            console.log(text);
             tr.find($this.inputAnswer).tooltip({ placement: 'right', title: text.join(' | ') }).tooltip('show');
           }
         });
