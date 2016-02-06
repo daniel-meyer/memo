@@ -62,11 +62,13 @@
     <div id="memo-alert" role="alert" class="alert alert-warning hide"><strong>Warning!</strong> There is no data to save</div>
 
     <button id="memo-next" class="btn btn-lg btn-primary">Show answer</button>
-
+    
+    {if empty($withoutSaving)}
     <div id="memo-save" class="hide">
         <div role="alert" class="alert alert-info"><strong>Lesson completed!</strong> Please click save button to store lesson results.</div>
         <button class="btn btn-lg btn-primary" data-url="memo/save-stats">Save</button>
     </div>
+    {/if}
 
     <div id="memo-next-lesson" class="hide">
         <div class="alert alert-success" role="alert"><strong>Saved!</strong> You successfully save this lesson results.</div>

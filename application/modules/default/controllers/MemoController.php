@@ -47,6 +47,23 @@ class MemoController extends Etd_Controller_Action
         $this->render('index');
     }
 
+    public function lastFailedAction()
+    {
+        $select = Orm::factory('Memo')
+            ->select()
+            ->from('memo')
+            ->setIntegrityCheck(false)
+            ->joinLeft(array('s' => 'memo_stat'), 'memo.id=s.memo_id', null)
+            ->where("answer != ''")
+            ->where('grades LIKE ?', '%0')
+            ->order(array('s.next_exam ASC', 'submit_date ASC'))
+            ->limit($this->_settings->memoLimit);
+
+        $this->view->memos = Orm::factory('Memo')->fetchAll($select);
+        $this->view->withoutSaving = true;
+        $this->render('index');
+    }
+
     public function sendAction()
     {
         /**

@@ -20,6 +20,7 @@
                 <ul class="nav navbar-nav">
                     <li><a href="admin">Login</a></li>
                     <li><a href="memo/last">Last added</a></li>
+                    <li><a href="memo/last-failed">Last failed</a></li>
                     <li><a href="memo">Get started</a></li>
 
                 </ul>
