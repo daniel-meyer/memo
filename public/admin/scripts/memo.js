@@ -66,7 +66,7 @@ Memo.importSrt = {
           success: function(data) {
             var text = [];
             console.log(data);
-            $.each(data.matches, function(row) {
+            $.each(data.matches, function(i, row) {
                 console.log(row);
                 text.push(row.translation);
             });
