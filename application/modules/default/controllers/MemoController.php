@@ -154,10 +154,9 @@ class MemoController extends Etd_Controller_Action
             unset($message['ajax']);
         }
 
-        if (!array_key_exists('question', $message) && Orm::factory('Memo')->count(array('question' => trim(strtolower(strip_tags($rq->getPost('question'))))))) {
+        if (!array_key_exists('question', $message) && Orm::factory('Memo')->count(array('question=?' => trim(strtolower(strip_tags($rq->getPost('question'))))))) {
             $message['question'] = 'This question already exist in database';
         }
-        $message['question'] = trim(strtolower(strip_tags($rq->getPost('question'))));
 
         return $message;
     }
