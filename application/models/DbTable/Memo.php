@@ -11,5 +11,6 @@ class Model_DbTable_Memo extends Zsamer_Db_Table_Orm
         'Model_DbTable_MemoStat'
     );
 
+    protected $_rowClass = 'Model_Memo';
 }
 
