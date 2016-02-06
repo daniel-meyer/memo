@@ -66,7 +66,7 @@ Memo.importSrt = {
           success: function(data) {
             var text = [];
             $.each(data.matches, function(i, row) {
-                text.push(row.Abundantly + ': ' + row.translation);
+                text.push(row.segment + ': ' + row.translation);
             });
             tr.find($this.inputAnswer).tooltip({ placement: 'right', title: text.join('<br>') }).tooltip('show');
           }
