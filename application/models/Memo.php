@@ -14,6 +14,6 @@ class Model_Memo extends Zsamer_Db_Table_Row_Orm
     }
 
     protected function trim($value) {
-        return strip_tags(trim(strtolower($value)));
+        return trim(strtolower(strip_tags($value)));
     }
 }
