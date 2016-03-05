@@ -68,6 +68,11 @@
         <div role="alert" class="alert alert-info"><strong>Lesson completed!</strong> Please click save button to store lesson results.</div>
         <button class="btn btn-lg btn-primary" data-url="memo/save-stats">Save</button>
     </div>
+    {else}
+        <div id="memo-save" class="hide">
+            <div role="alert" class="alert alert-info"><strong>Lesson completed!</strong> Would you like to repeat Last Failed?</div>
+            <button class="btn btn-lg btn-primary" data-url="memo/last-failed">Last failed</button>
+        </div>
     {/if}
 
     <div id="memo-next-lesson" class="hide">
