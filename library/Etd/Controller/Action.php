@@ -33,7 +33,7 @@ abstract class Etd_Controller_Action extends Zend_Controller_Action
 
         $this->_user = Zend_Registry::get('user');
         $this->view->user = $this->_user;
-        
+
         $this->_session = Zend_Registry::get('session');
         $this->view->session = $this->_session;
 

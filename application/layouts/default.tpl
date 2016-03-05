@@ -19,9 +19,9 @@
             <div id="navbar" class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
                     {if $user->getId() == 1}<li><a href="admin">Admin</a></li>{/if}
-                    <li><a href="memo/last">Last added</a></li>
-                    <li><a href="memo/last-failed">Last failed</a></li>
-                    <li><a href="memo">New lesson</a></li>
+                    <li {if $request->getActionName() == 'last'}class="active"{/if}><a href="memo/last">Last added</a></li>
+                    <li {if $request->getActionName() == 'last-failed'}class="active"{/if}><a href="memo/last-failed">Last failed</a></li>
+                    <li {if $request->getActionName() == 'index'}class="active"{/if}><a href="memo">New lesson</a></li>
 
                 </ul>
             </div><!--/.nav-collapse -->
