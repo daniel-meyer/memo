@@ -21,7 +21,7 @@
                     <li><a href="admin">Login</a></li>
                     <li><a href="memo/last">Last added</a></li>
                     <li><a href="memo/last-failed">Last failed</a></li>
-                    <li><a href="memo">Get started</a></li>
+                    <li><a href="memo">New lesson</a></li>
 
                 </ul>
             </div><!--/.nav-collapse -->
