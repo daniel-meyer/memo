@@ -45,7 +45,7 @@ class Admin_AuthController extends Etd_Controller_Action
 				$user->save();
 				// If "remember" was marked
                 if ($rq->getPost('rememberme')) {
-                    Zend_Session::rememberMe();
+                    Zend_Session::rememberMe(60 * 60 * 24 * 365);
                 }
                 if (!$rq->isXmlHttpRequest()) {
 					$referer = $rq->getPost('referer');
