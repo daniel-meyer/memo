@@ -10,7 +10,7 @@ class Model_DbTable_Memo extends Zsamer_Db_Table_Orm
     protected $_dependentTables = array(
         'Model_DbTable_MemoStat'
     );
-    
+
     protected $_referenceMap = array(
         'User' => array(
             'columns' => array('user_id'),
