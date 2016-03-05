@@ -40,7 +40,6 @@ abstract class Etd_Controller_Action extends Zend_Controller_Action
         $this->_session = Zend_Registry::get('session');
         $this->view->headTitle()->setSeparator(' :: ');
         $this->view->headTitle()->set($this->_settings->siteTitle);
-        $this->view->defaultUser = Orm::factory('User')->findById($this->_config->etd->user->default);
     }
     
     /**

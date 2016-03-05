@@ -15,7 +15,7 @@ class MemoController extends Etd_Controller_Action
             ->setIntegrityCheck(false)
             ->joinLeft(array('s' => 'memo_stat'), 'memo.id=s.memo_id', array('next_exam'))
             ->where("answer != ''")
-            ->where('s.user_id = ?', $this->_config->etd->user->default)
+            ->where('s.user_id = ?', $this->_user->getId())
             ->order(array('s.next_exam ASC', 'submit_date ASC'))
             ->limit($this->_settings->memoLimit);
 
@@ -37,7 +37,7 @@ class MemoController extends Etd_Controller_Action
             ->setIntegrityCheck(false)
             ->joinLeft(array('s' => 'memo_stat'), 'memo.id=s.memo_id', null)
             ->where("answer != ''")
-            ->where('s.user_id = ?', $this->_config->etd->user->default)
+            ->where('s.user_id = ?', $this->_user->getId())
             ->order('submit_date DESC')
             ->limit($this->_settings->memoLimit);
 
@@ -58,7 +58,7 @@ class MemoController extends Etd_Controller_Action
             ->joinLeft(array('s' => 'memo_stat'), 'memo.id=s.memo_id', null)
             ->where("answer != ''")
             ->where('grades LIKE ?', '%0')
-            ->where('s.user_id = ?', $this->_config->etd->user->default)
+            ->where('s.user_id = ?', $this->_user->getId())
             ->order(array('s.next_exam ASC', 'submit_date ASC'))
             ->limit($this->_settings->memoLimit);
 
@@ -99,14 +99,15 @@ class MemoController extends Etd_Controller_Action
         $rq = $this->getRequest();
         if (is_array($rq->getPost('answers'))) {
             foreach ($rq->getPost('answers') as $memoId => $grade) {
-                $stat = Orm::factory('MemoStat')->findOneBy(array('memo_id' => $memoId, 'user_id' => $this->_config->etd->user->default));
+                $stat = Orm::factory('MemoStat')->findOneBy(array('memo_id' => $memoId, 'user_id' => $this->_user->getId()));
                 if (!$stat) {
-                    $stat = Orm::factory('MemoStat')->create(array('memo_id' => $memoId, 'user_id' => $this->_config->etd->user->default, 'grades' => $grade));
+                    $stat = Orm::factory('MemoStat')->create(array('memo_id' => $memoId, 'user_id' => $this->_user->getId(), 'grades' => $grade));
                 } else {
                     $stat->setGrades($stat->getGrades() . ',' . $grade);
                 }
                 $stat->setGrade($grade);
                 $stat->setNextExam($this->getNextExamDate($stat->getGrades()));
+                $stat->setUser($this->_user);
                 $stat->save();
                 $data = array('success' => true);
             }
@@ -117,7 +118,9 @@ class MemoController extends Etd_Controller_Action
     private function getNextExamDate($grades)
     {
         $date = new DateTime;
-        if (substr($grades, -7) == '0,1,1,1') {
+        if (substr($grades, -7) == '1,1,1,1') {
+            $date->modify('+3 months');
+        } elseif (substr($grades, -7) == '0,1,1,1') {
             $date->modify('+1 week');
         } elseif (substr($grades, -5) == '1,1,1') {
             $date->modify('+1 month');
