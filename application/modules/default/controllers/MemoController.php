@@ -13,9 +13,8 @@ class MemoController extends Etd_Controller_Action
             ->select()
             ->from('memo')
             ->setIntegrityCheck(false)
-            ->joinLeft(array('s' => 'memo_stat'), 'memo.id=s.memo_id', array('next_exam'))
+            ->joinLeft(array('s' => 'memo_stat'), 'memo.id=s.memo_id AND s.user_id = ' . $this->_user->getId(), array('next_exam'))
             ->where("answer != ''")
-            ->where('s.user_id = ?', $this->_user->getId())
             ->order(array('s.next_exam ASC', 'submit_date ASC'))
             ->limit($this->_settings->memoLimit);
 
@@ -35,9 +34,8 @@ class MemoController extends Etd_Controller_Action
             ->select()
             ->from('memo')
             ->setIntegrityCheck(false)
-            ->joinLeft(array('s' => 'memo_stat'), 'memo.id=s.memo_id', null)
+            ->joinLeft(array('s' => 'memo_stat'), 'memo.id=s.memo_id AND s.user_id = ' . $this->_user->getId(), null)
             ->where("answer != ''")
-            ->where('s.user_id = ?', $this->_user->getId())
             ->order('submit_date DESC')
             ->limit($this->_settings->memoLimit);
 
@@ -55,7 +53,7 @@ class MemoController extends Etd_Controller_Action
             ->select()
             ->from('memo')
             ->setIntegrityCheck(false)
-            ->joinLeft(array('s' => 'memo_stat'), 'memo.id=s.memo_id', null)
+            ->joinLeft(array('s' => 'memo_stat'), 'memo.id=s.memo_id AND s.user_id = ' . $this->_user->getId(), null)
             ->where("answer != ''")
             ->where('grades LIKE ?', '%0')
             ->where('s.user_id = ?', $this->_user->getId())
@@ -82,7 +80,7 @@ class MemoController extends Etd_Controller_Action
                 $form->setQuestion($rq->getPost('question'));
                 $form->setAnswer($rq->getPost('answer'));
                 $form->setSubmitDate(new DateTime);
-                $form->setUserId($this->_config->etd->user->default);
+                $form->setUser($this->_user);
                 $form->setActive(1);
                 $form->save();
 
