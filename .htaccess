@@ -2,8 +2,8 @@ RewriteEngine On
 php_value magic_quotes_gpc 0
 RewriteBase /
 
-#SetEnv APPLICATION_ENV development
-SetEnv APPLICATION_ENV production
+SetEnv APPLICATION_ENV development
+#SetEnv APPLICATION_ENV production
 
 
 RewriteCond %{HTTP_HOST} !^www.(.*) [NC]
