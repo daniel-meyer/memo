@@ -2,12 +2,12 @@ RewriteEngine On
 php_value magic_quotes_gpc 0
 RewriteBase /
 
-SetEnv APPLICATION_ENV development
-#SetEnv APPLICATION_ENV production
+#SetEnv APPLICATION_ENV development
+SetEnv APPLICATION_ENV production
 
 
-#RewriteCond %{HTTP_HOST} !^www.(.*) [NC]
-#RewriteRule ^(.*)$ http://www.%{HTTP_HOST}/$1 [R=301,L]
+RewriteCond %{HTTP_HOST} !^www.(.*) [NC]
+RewriteRule ^(.*)$ http://www.%{HTTP_HOST}/$1 [R=301,L]
 
 RewriteRule        (^|/)(favicon.ico)$  public/$2 [L]
 RewriteRule        (^|/)(scripts/)(.*)$  public/$2$3 [L]
