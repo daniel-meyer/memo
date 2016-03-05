@@ -135,6 +135,7 @@ resources.settings.enable = true
 etd.tree.showHome = true
 etd.tree.maxDeph = 1
 etd.language.default = pl
+etd.user.default = 1
 
     
 ; ------------------------------------------------------------------------------

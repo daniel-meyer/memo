@@ -12,6 +12,11 @@ class Model_DbTable_MemoStat extends Zsamer_Db_Table_Orm
             'columns' => array('memo_id'),
             'refTableClass' => 'Model_DbTable_Memo',
             'refColumns' => array('id')
+        ),
+        'User' => array(
+            'columns' => array('user_id'),
+            'refTableClass' => 'Model_DbTable_User',
+            'refColumns' => array('id')
         )
     );
 

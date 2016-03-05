@@ -15,6 +15,7 @@ class MemoController extends Etd_Controller_Action
             ->setIntegrityCheck(false)
             ->joinLeft(array('s' => 'memo_stat'), 'memo.id=s.memo_id', array('next_exam'))
             ->where("answer != ''")
+            ->where('s.user_id = ?', $this->_config->etd->user->default)
             ->order(array('s.next_exam ASC', 'submit_date ASC'))
             ->limit($this->_settings->memoLimit);
 
@@ -36,6 +37,7 @@ class MemoController extends Etd_Controller_Action
             ->setIntegrityCheck(false)
             ->joinLeft(array('s' => 'memo_stat'), 'memo.id=s.memo_id', null)
             ->where("answer != ''")
+            ->where('s.user_id = ?', $this->_config->etd->user->default)
             ->order('submit_date DESC')
             ->limit($this->_settings->memoLimit);
 
@@ -56,6 +58,7 @@ class MemoController extends Etd_Controller_Action
             ->joinLeft(array('s' => 'memo_stat'), 'memo.id=s.memo_id', null)
             ->where("answer != ''")
             ->where('grades LIKE ?', '%0')
+            ->where('s.user_id = ?', $this->_config->etd->user->default)
             ->order(array('s.next_exam ASC', 'submit_date ASC'))
             ->limit($this->_settings->memoLimit);
 
@@ -79,6 +82,7 @@ class MemoController extends Etd_Controller_Action
                 $form->setQuestion($rq->getPost('question'));
                 $form->setAnswer($rq->getPost('answer'));
                 $form->setSubmitDate(new DateTime);
+                $form->setUserId($this->_config->etd->user->default);
                 $form->setActive(1);
                 $form->save();
 
@@ -92,13 +96,12 @@ class MemoController extends Etd_Controller_Action
     public function saveStatsAction()
     {
         $data = array('success' => false);
-        $userId = 1;
         $rq = $this->getRequest();
         if (is_array($rq->getPost('answers'))) {
             foreach ($rq->getPost('answers') as $memoId => $grade) {
-                $stat = Orm::factory('MemoStat')->findOneBy(array('memo_id' => $memoId, 'user_id' => $userId));
+                $stat = Orm::factory('MemoStat')->findOneBy(array('memo_id' => $memoId, 'user_id' => $this->_config->etd->user->default));
                 if (!$stat) {
-                    $stat = Orm::factory('MemoStat')->create(array('memo_id' => $memoId, 'user_id' => $userId, 'grades' => $grade));
+                    $stat = Orm::factory('MemoStat')->create(array('memo_id' => $memoId, 'user_id' => $this->_config->etd->user->default, 'grades' => $grade));
                 } else {
                     $stat->setGrades($stat->getGrades() . ',' . $grade);
                 }

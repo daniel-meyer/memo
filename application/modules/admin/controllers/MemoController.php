@@ -134,7 +134,7 @@ END;
             
             $entity = Orm::factory('Memo')->create();
             $entity->populate($rq->getPost());
-
+            $entity->setUser(Service::factory('User')->getUser());
             $entity->setSubmitDate(new DateTime);
             $entity->save();
             
@@ -160,7 +160,7 @@ END;
                 if(!$question)continue;
                 $entity = Orm::factory('Memo')->create();
                 $entity->setQuestion($question);
-                
+                $entity->setUser(Service::factory('User')->getUser());
                 $entity->setSubmitDate(new DateTime);
                 $entity->save();
                 $i++;
@@ -205,6 +205,7 @@ END;
                     $entity->setAnswer($answer);
                     $entity->setActive(1);
                 }
+                $entity->setUser(Service::factory('User')->getUser());
                 $entity->setSubmitDate(new DateTime);
                 $entity->save();
                 $i++;
