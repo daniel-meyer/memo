@@ -2,7 +2,6 @@
 
 abstract class Etd_Controller_Action extends Zend_Controller_Action
 {
-    
     protected $_auth;
     protected $_acl;
     protected $_session;
@@ -10,8 +9,6 @@ abstract class Etd_Controller_Action extends Zend_Controller_Action
     protected $_settings;
     protected $_user;
     protected $_locale;
-    
-    
     
     public function init()
     {
@@ -23,7 +20,6 @@ abstract class Etd_Controller_Action extends Zend_Controller_Action
         $this->view->lang = $this->_locale->getLanguage();
         $this->view->langDefault = $this->_config->etd->language->default;
         
-        
         $this->_auth = Zend_Auth::getInstance();
         $this->view->auth = $this->_auth;
         
@@ -33,11 +29,14 @@ abstract class Etd_Controller_Action extends Zend_Controller_Action
         $this->view->request = $this->getRequest();
         
         $this->_settings = Zend_Registry::get('settings');
+        $this->view->settings = $this->_settings;
+
         $this->_user = Zend_Registry::get('user');
-
-
-
+        $this->view->user = $this->_user;
+        
         $this->_session = Zend_Registry::get('session');
+        $this->view->session = $this->_session;
+
         $this->view->headTitle()->setSeparator(' :: ');
         $this->view->headTitle()->set($this->_settings->siteTitle);
     }

@@ -18,7 +18,7 @@
             </div>
             <div id="navbar" class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
-                    <li><a href="admin">Login</a></li>
+                    {if $user->getId() == 1}<li><a href="admin">Admin</a></li>{/if}
                     <li><a href="memo/last">Last added</a></li>
                     <li><a href="memo/last-failed">Last failed</a></li>
                     <li><a href="memo">New lesson</a></li>
