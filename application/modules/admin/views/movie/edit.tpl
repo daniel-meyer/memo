@@ -21,7 +21,7 @@
             <p>
                 <label for="submit_date">Data</label>
                 <br />
-                <input id="submit_date" name="submit_date" value="{$request->getPost('submit_date')|default:$entity->getSubmitDate()}" type="text" class="text small datepicker" />
+                <input id="submit_date" name="submit_date" value="{$request->getPost('submit_date')|default:$entity->getSubmitDate()|format:'Y-m-d'}" type="text" class="text small datepicker" />
                 {validate check="notEmpty:#submit_date" message='<span class="error">Nieprawidłowa data</span>'}
             </p>
 
