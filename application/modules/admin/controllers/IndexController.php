@@ -79,15 +79,15 @@ class Admin_IndexController extends Etd_Controller_Action
                 'comments'=>'Baza słówek', 
                 'amount'=>Orm::factory('Memo')->count(array('active=?'=>1))
             ),
-            /*
+
             array(
-                'name'=>'Slajdy', 
-                'link'=>'admin/slider', 
-                'icon'=>'gallery', 
-                'comments'=>'Zarządzaj slajdami na stronie głownej', 
+                'name'=>'Filmy',
+                'link'=>'admin/movie',
+                'icon'=>'movies',
+                'comments'=>'Zarządzaj filmami',
                 'amount'=>''
             ),
-   
+   /*
             array(
                 'name'=>'Klienci', 
                 'link'=>'admin/clients', 
@@ -136,14 +136,7 @@ class Admin_IndexController extends Etd_Controller_Action
                 'comments'=>'Przeglądaj pliki na serwerze', 
                 'amount'=>''
             ),
-            
-            array(
-                'name'=>'', 
-                'link'=>'#', 
-                'icon'=>'', 
-                'comments'=>'', 
-                'amount'=>''
-            ),
+
                     
             array(
                 'name'=>'', 

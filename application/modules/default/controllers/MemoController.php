@@ -5,6 +5,8 @@ class MemoController extends Etd_Controller_Action
     function init()
     {
         parent::init();
+
+        $this->view->movies = Orm::factory('Movies')->fetchAll();
     }
 
     public function indexAction()
@@ -38,6 +40,25 @@ class MemoController extends Etd_Controller_Action
             ->where("answer != ''")
             ->order('submit_date DESC')
             ->limit($this->_settings->memoLimit);
+
+        if (!$this->_getParam('all')) {
+            $select->where('s.id IS NULL');
+        }
+
+        $this->view->memos = Orm::factory('Memo')->fetchAll($select);
+        $this->render('index');
+    }
+
+    public function dateAction()
+    {
+        $select = Orm::factory('Memo')
+            ->select()
+            ->from('memo')
+            ->setIntegrityCheck(false)
+            ->where("answer != ''")
+            ->where('DATE(submit_date) = ?', $this->_getParam('date'))
+            ->order('submit_date DESC')
+            ->limit(500);
 
         if (!$this->_getParam('all')) {
             $select->where('s.id IS NULL');
@@ -164,4 +185,5 @@ class MemoController extends Etd_Controller_Action
 
         return $message;
     }
+
 }
