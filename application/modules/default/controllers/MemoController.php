@@ -57,7 +57,7 @@ class MemoController extends Etd_Controller_Action
             ->setIntegrityCheck(false)
             ->where("answer != ''")
             ->where('DATE(submit_date) = ?', $this->_getParam('date'))
-            ->order('submit_date DESC')
+            ->order('id')
             ->limit(500);
 
         $this->view->memos = Orm::factory('Memo')->fetchAll($select);
