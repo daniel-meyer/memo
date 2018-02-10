@@ -1,4 +1,4 @@
-<h2>Słówka({$paginator->getPages()->totalItemCount})</h2>
+<h2>Filmy({$paginator->getPages()->totalItemCount})</h2>
 <p>Zarządzaj listą filmów</p>
 
   
@@ -22,7 +22,7 @@
 	<tr>
 		<td class="lp">{$item->getId()}</td>
 		<td>{$item->getTitle()|textcut:255}</td>
-        <td>{$item->getSubmitDate()}</td>
+        <td>{$item->getSubmitDate()|format:'Y-m-d'}</td>
 
 
 		<td class="edit">
