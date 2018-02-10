@@ -22,7 +22,7 @@
 	<tr>
 		<td class="lp">{$item->getId()}</td>
 		<td>{$item->getTitle()|textcut:255}</td>
-        <td>{$item->getDate()}</td>
+        <td>{$item->getSubmitDate()}</td>
 
 
 		<td class="edit">
