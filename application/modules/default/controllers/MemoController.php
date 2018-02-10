@@ -60,10 +60,6 @@ class MemoController extends Etd_Controller_Action
             ->order('submit_date DESC')
             ->limit(500);
 
-        if (!$this->_getParam('all')) {
-            $select->where('s.id IS NULL');
-        }
-
         $this->view->memos = Orm::factory('Memo')->fetchAll($select);
         $this->render('index');
     }
