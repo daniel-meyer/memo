@@ -63,7 +63,6 @@ class Admin_MovieController extends Etd_Controller_Action
             $entity = Orm::factory('Movie')->create();
             $entity->populate($rq->getPost());
             $entity->setUser(Service::factory('User')->getUser());
-            $entity->setSubmitDate(new DateTime);
             $entity->save();
 
             $this->addMessage('Dodano nowy film', 'succ');
