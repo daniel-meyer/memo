@@ -6,7 +6,7 @@ class MemoController extends Etd_Controller_Action
     {
         parent::init();
 
-        $this->view->movies = Orm::factory('Movies')->fetchAll();
+        $this->view->movies = Orm::factory('Movie')->fetchAll();
     }
 
     public function indexAction()
