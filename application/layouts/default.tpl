@@ -27,7 +27,7 @@
                         <a href="#" class="dropdown-toggle" id="drop4" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Movies <span class="caret"></span></a>
                         <ul class="dropdown-menu" id="menu1" aria-labelledby="drop4">
                             {foreach from=$movies item=item}
-                                 <li><a href="memo/date?date={$item->getSubmitDate()|format:'Y-m-d'}">{$item->getTitle()}</a></li>
+                                 <li><a href="memo/date/date/{$item->getSubmitDate()|format:'Y-m-d'}">{$item->getTitle()}</a></li>
                             {/foreach}
                         </ul>
                     </li>
